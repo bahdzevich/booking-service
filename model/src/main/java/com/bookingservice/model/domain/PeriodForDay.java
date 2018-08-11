@@ -17,8 +17,8 @@ public class PeriodForDay {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-  private LocalTime start;
-  private LocalTime end;
+  private LocalTime startTime;
+  private LocalTime endTime;
 
   @ManyToOne(fetch = FetchType.LAZY)
   private ScheduleForDay scheduleForDay;
