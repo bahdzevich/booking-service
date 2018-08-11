@@ -6,7 +6,7 @@ class Item extends Component {
     const { name, description } = this.props.data;
 
     return(
-      <div className='specialists__item' data-name={name} data-description={description} onClick={() => this.props.changeName(name, description)}>
+      <div className='specialists__item' onClick={() => this.props.changeName(name)}>
         <div className='specialists__name text'>{name}</div>
         <p className='specialists__description text-little'>{description}</p>
       </div>

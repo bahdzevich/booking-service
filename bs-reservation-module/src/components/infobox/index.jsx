@@ -15,9 +15,9 @@ class InfoBox extends Component {
 
     return(
       <div className={'info-box' + (((info.length === 0) || allRes) ? ' info-box--disabled' : '')}>
-        <a className='info-box__icon text'>
-          <span>i</span>
-        </a>
+        <p className='info-box__icon text'>
+          <span>Ваш выбор:</span>
+        </p>
         <div className='info-box__list-wrap'>
           <ul className='info-box__list'>
             {info}

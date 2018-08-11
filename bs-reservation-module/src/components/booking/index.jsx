@@ -18,28 +18,28 @@ class Booking extends Component {
         {
           name: 'calendar',
           flag: false,
+          value: '',
         },
         {
           name: 'times',
           flag: false,
+          value: '',
         },
         {
           name: 'specialists',
           flag: false,
+          value: '',
         },
         {
           name: 'form',
           flag: false,
+          value: '',
         },
         {
           name: 'success',
           flag: false,
         },
       ],
-      resDate: '',
-      resTime: '',
-      resName: '',
-      resDescription: '',
       resUserName: '',
       resUserSurname: '',
       resUserEmail: '',
@@ -51,6 +51,7 @@ class Booking extends Component {
     this.changeName = this.changeName.bind(this);
     this.changeOrders = this.changeOrders.bind(this);
     this.changeBack = this.changeBack.bind(this);
+    this.translatName = this.translatName.bind(this);
     this.returnSelectedBlocks = this.returnSelectedBlocks.bind(this);
     this.changeUserName = this.changeUserName.bind(this);
     this.changeUserSurname = this.changeUserSurname.bind(this);
@@ -95,10 +96,6 @@ class Booking extends Component {
     });
 
     console.log('resDate: ', this.state.resDate);
-    console.log('resTime: ', this.state.resTime);
-    console.log('resName: ', this.state.resName);
-    console.log('resDescription: ', this.state.resDescription);
-    console.log('resDate: ', this.state.resDate);
     console.log('resUserName: ', this.state.resUserName);
     console.log('resUserSurname: ', this.state.resUserSurname);
     console.log('resUserEmail: ', this.state.resUserEmail);
@@ -117,17 +114,19 @@ class Booking extends Component {
       }
     });
     nBlocks[i - 1].flag = false;
+    nBlocks[i - 1].value = '';
 
     this.setState({
       blocks: nBlocks,
     });
   }
-  returnSelectedBlocks(name) {
+  returnSelectedBlocks(name, value) {
     let nBlocks = this.state.blocks;
     let i = this.state.blocks.length;
     const block = {
       name: name,
       flag: true,
+      value: value,
     };
 
     this.state.blocks.forEach((item, index) => {
@@ -160,7 +159,7 @@ class Booking extends Component {
     });
   }
   changeDay(date) {
-    const blocks = this.returnSelectedBlocks('calendar');
+    const blocks = this.returnSelectedBlocks('calendar', date);
 
     this.setState({
       blocks: blocks,
@@ -169,36 +168,43 @@ class Booking extends Component {
   }
 
   changeTime(time) {
-    const blocks = this.returnSelectedBlocks('times');
+    const blocks = this.returnSelectedBlocks('times', time);
 
     this.setState({
       blocks: blocks,
       resTime: time,
     });
   }
-  changeName(name, description) {
-    const blocks = this.returnSelectedBlocks('specialists');
+  changeName(name) {
+    const blocks = this.returnSelectedBlocks('specialists', name);
 
     this.setState({
       blocks: blocks,
       resName: name,
-      resDescription: description,
     });
+  }
+  translatName(name) {
+    let nName = '';
+    (name === 'calendar') && (nName = 'Дата');
+    (name === 'times') && (nName = 'Время');
+    (name === 'specialists') && (nName = 'Специалист');
+
+    return nName;
   }
   render() {
     const blocks = this.state.blocks,
           dataInfo = [
             {
-              name: 'Дата',
-              info: this.state.resDate,
+              name: this.translatName(this.state.blocks[0].name),
+              info: this.state.blocks[0].value,
             },
             {
-              name: 'Время',
-              info: this.state.resTime,
+              name: this.translatName(this.state.blocks[1].name),
+              info: this.state.blocks[1].value,
             },
             {
-              name: 'Имя',
-              info: this.state.resName,
+              name: this.translatName(this.state.blocks[2].name),
+              info: this.state.blocks[2].value,
             },
           ];
 

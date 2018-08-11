@@ -1,57 +1,36 @@
 @import "../../base/styles/vars.scss";
 
 .info-box {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  z-index: 3;
+  padding: rem(6) rem(12);
+  border: 1px solid $dark-gray;
+  border-radius: rem(2);
+  background-color: #fff;
+  margin-bottom: rem(14);
 
   &--disabled {
     display: none;
   }
 
   &__icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: rem(24);
-    height: rem(24);
-    border: 1px solid $dark-gray;
-    border-radius: 50%;
-    background-color: transparent;
+    margin-bottom: rem(4);
     color: $black;
-
-    &:hover {
-      box-shadow: 0 rem(2) rem(5) 0 rgba(0, 0, 0, 0.3);
-      border-color: $black-blue;
-      background-color: #fff;
-      color: $black-blue;
-
-      & + .info-box__list-wrap {
-        display: block;
-      }
-    }
   }
 
   &__list-wrap {
-    position: absolute;
-    top: rem(32);
-    right: 0;
-    display: none;
-    padding: rem(6) rem(12);
-    border: 1px solid $dark-gray;
-    border-radius: rem(2);
-    background-color: #fff;
-    animation-duration: 0.6s;
-    animation-fill-mode: both;
-    animation-name: fadeIn;
+    // position: absolute;
+    // top: rem(32);
+    // right: 0;
+    // display: none;
+
+    // animation-duration: 0.6s;
+    // animation-fill-mode: both;
+    // animation-name: fadeIn;
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    // align-items: flex-end;
     list-style: none;
   }
 
@@ -60,7 +39,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: right;
+    // text-align: right;
     color: $black;
 
     &:last-of-type {
