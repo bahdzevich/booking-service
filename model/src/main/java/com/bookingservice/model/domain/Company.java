@@ -4,8 +4,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Set;
 
 /**
  * A class for a company account. A company account is used to manage the following entities: {@link
@@ -20,4 +23,7 @@ import javax.persistence.Table;
 public class Company extends User {
 
   private String description;
+
+  @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<Provider> providers;
 }

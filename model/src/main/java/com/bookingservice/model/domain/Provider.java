@@ -19,6 +19,9 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 public class Provider extends User {
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Company company;
+
   @ManyToMany(mappedBy = "providers")
   private Set<Service> services;
 
