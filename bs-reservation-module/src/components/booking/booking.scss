@@ -1,0 +1,67 @@
+@import "../../base/styles/vars.scss";
+
+.booking {
+  position: relative;
+  padding: rem(16) rem(18) rem(8);
+  border: 2px solid $dark-gray;
+  border-radius: rem(4);
+  margin-top: rem(100);
+  margin-bottom: rem(40);
+  background-color: $gray;
+  box-shadow: 0 rem(4) rem(10) 0 rgba(0, 47, 160, 0.4);
+
+  &__title {
+    padding-right: rem(32);
+    margin-bottom: rem(20);
+  }
+
+  &__content-wrap {
+    position: relative;
+    min-height: rem(332);
+    // padding-bottom: rem(46);
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__back {
+    margin-top: rem(6);
+  }
+
+  &__back-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13%;
+    height: rem(40);
+    border: 1px solid $dark-gray;
+    border-radius: rem(2);
+    margin-right: auto;
+    background-color: transparent;
+    font-size: rem(16);
+    color: $black;
+
+    &:hover {
+      box-shadow: 0 rem(2) rem(5) 0 rgba(0, 0, 0, 0.3);
+      border-color: $black-blue;
+      background-color: #fff;
+      color: $black-blue;
+    }
+
+    &:active {
+      border-color: $black-blue;
+      background-color: $black-blue;
+      color: #fff;
+    }
+  }
+
+  &--form {
+    .booking__back {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+}

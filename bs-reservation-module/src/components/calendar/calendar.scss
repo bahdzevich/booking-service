@@ -1,0 +1,101 @@
+@import "../../base/styles/vars.scss";
+
+.calendar {
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: rem(14);
+  }
+
+  &__nav-arrow {
+    width: 13%;
+    height: rem(40);
+    border: 1px solid $dark-gray;
+    border-radius: rem(2);
+    background-color: transparent;
+    font-size: rem(16);
+    color: $black;
+
+    &:hover {
+      box-shadow: 0 rem(2) rem(5) 0 rgba(0, 0, 0, 0.3);
+      border-color: $black-blue;
+      background-color: #fff;
+      color: $black-blue;
+    }
+
+    &:active {
+      border-color: $black-blue;
+      background-color: $black-blue;
+      color: #fff;
+    }
+  }
+
+  &__nav-month {
+    &:first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__month {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__day-number {
+    display: block;
+    transition: 0.4s;
+  }
+
+  &__day {
+    width: 13%;
+    height: rem(40);
+    padding: rem(2);
+    border: 1px solid $dark-gray;
+    border-radius: rem(2);
+    margin-right: 1.5%;
+    margin-bottom: rem(6);
+    cursor: pointer;
+    transition: 0.4s;
+
+    &:nth-of-type(7n) {
+      margin-right: 0;
+    }
+
+    &:hover {
+      box-shadow: 0 rem(2) rem(5) 0 rgba(0, 0, 0, 0.3);
+      border-color: $black-blue;
+      background-color: #fff;
+
+      .calendar__day-number {
+        color: $black-blue;
+      }
+    }
+
+    &:active {
+      border-color: $black-blue;
+      background-color: $black-blue;
+
+      .calendar__day-number {
+        color: #fff;
+      }
+    }
+
+    &--today {
+      box-shadow: 0 rem(2) rem(4) 0 rgba(0, 0, 0, 0.3);
+      border-color: $black-blue;
+      background-color: #fff;
+
+      &:hover {
+        box-shadow: 0 rem(5) rem(12) 0 rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    &--no-active {
+      background-color: rgba(0, 0, 0, 0.1);
+      pointer-events: none;
+      cursor: auto;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@import "../../base/styles/vars.scss";
+
+.success {
+  &__head {
+    margin-bottom: rem(32);
+  }
+
+  &__title,
+  &__s-title,
+  &__t-title {
+    width: 100%;
+    // text-align: center;
+  }
+
+  &__title {
+    margin-bottom: rem(16);
+  }
+
+  &__s-title {
+    margin-bottom: rem(6);
+  }
+
+  // &__info {
+  //
+  // }
+
+  &__info-title {
+    margin-bottom: rem(8);
+  }
+
+  // &__info-item {
+  //   margin-bottom: rem(2);
+  //
+  //   &:last-of-type {
+  //     margin-bottom: 0;
+  //   }
+  // }
+}

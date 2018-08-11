@@ -1,0 +1,93 @@
+@import "vars";
+@import "animate";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+
+  @media (min-width: 1910px) {
+    font-size: 19px;
+  }
+
+  @media (max-width: 359px) {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+  outline: 0;
+  cursor: pointer;
+  transition: 0.4s;
+
+  div, p, span {
+    transition: 0.4s;
+  }
+}
+
+button, input, textarea, select {
+  outline: 0;
+  transition: 0.4s;
+  font-family: 'Open Sans';
+
+  div, p, span {
+    transition: 0.4s;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+svg {
+  transition: 0.4s;
+}
+
+.none {
+  display: none !important;
+}
+
+
+.main {
+  max-width: rem(360);
+  margin: 0 auto;
+}
+
+.h1 {
+  font-size: rem(28);
+  line-height: 1.2;
+  color: $black;
+}
+.h2 {
+  font-size: rem(24);
+  line-height: 1.2;
+  color: $black;
+}
+
+.h3 {
+  font-size: rem(18);
+  line-height: 1.2;
+  color: $black;
+}
+
+.text {
+  font-size: rem(16);
+  line-height: 1.4;
+  color: $black;
+}
+
+.text-little {
+  font-size: rem(12);
+  line-height: 1.2;
+  color: $black;
+}

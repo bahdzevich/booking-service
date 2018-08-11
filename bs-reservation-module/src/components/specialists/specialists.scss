@@ -1,0 +1,58 @@
+@import "../../base/styles/vars.scss";
+
+.specialists {
+  max-height: rem(264);
+  overflow: auto;
+
+  &__name,
+  &__description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__name {
+    margin-bottom: rem(2);
+  }
+
+  &__description {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  &__item {
+    width: 100%;
+    height: rem(48);
+    padding: rem(2) rem(12) 0;
+    border: 1px solid $dark-gray;
+    border-radius: rem(2);
+    margin-bottom: rem(6);
+    cursor: pointer;
+    transition: 0.4s;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      box-shadow: 0 rem(2) rem(5) 0 rgba(0, 0, 0, 0.3);
+      border-color: $black-blue;
+      background-color: #fff;
+
+      .specialists__name,
+      .specialists__description {
+        color: $black-blue;
+      }
+    }
+
+    &:active {
+      border-color: $black-blue;
+      background-color: $black-blue;
+
+      .specialists__name,
+      .specialists__description {
+        color: #fff;
+      }
+    }
+  }
+}

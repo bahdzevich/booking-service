@@ -1,0 +1,70 @@
+@import "../../base/styles/vars.scss";
+
+.switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: rem(14);
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13%;
+    height: rem(40);
+    padding: rem(2);
+    border: 1px solid $dark-gray;
+    border-radius: rem(2);
+    margin-right: 1.5%;
+    cursor: pointer;
+    transition: 0.4s;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    svg {
+      display: block;
+      width: rem(20);
+      height: rem(20);
+      fill: #333;
+    }
+
+    &:hover {
+      box-shadow: 0 rem(2) rem(5) 0 rgba(0, 0, 0, 0.3);
+      border-color: $black-blue;
+      background-color: #fff;
+
+      svg {
+        fill: $black-blue;
+      }
+    }
+
+    &:active {
+      border-color: $black-blue;
+      background-color: $black-blue;
+
+      svg {
+        fill: #fff;
+      }
+    }
+
+    &--active {
+      box-shadow: 0 rem(2) rem(4) 0 rgba(0, 0, 0, 0.3);
+      border-color: $black-blue;
+      background-color: #fff;
+      pointer-events: none;
+      cursor: auto;
+
+      &:hover {
+        box-shadow: 0 rem(5) rem(12) 0 rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    &--no-active {
+      background-color: rgba(0, 0, 0, 0.1);
+      pointer-events: none;
+      cursor: auto;
+    }
+  }
+}

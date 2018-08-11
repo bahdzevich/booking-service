@@ -1,0 +1,92 @@
+@import "../../base/styles/vars.scss";
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  &__item {
+    width: 48%;
+    margin-bottom: rem(12);
+
+    &:nth-of-type(2n+1) {
+      margin-right: 4%;
+    }
+
+    &:last-of-type {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  &__title {
+    margin-bottom: rem(4);
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: 0 rem(14);
+    border-radius: rem(2);
+    border: 1px solid $dark-gray;
+    background-color: #fff;
+    font-size: rem(12);
+    color: $black;
+
+    &::placeholder {
+      color: $dark-gray;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      box-shadow: 0 rem(2) rem(5) 0 rgba(0, 0, 0, 0.3);
+      border-color: $black-blue;
+      color: $black-blue;
+    }
+  }
+
+  &__input {
+    height: rem(40);
+
+    &--fail {
+      border-color: $red;
+    }
+  }
+
+  &__textarea {
+    max-width: 100%;
+    min-width: 100%;
+    min-height: rem(100);
+    max-height: rem(100);
+    padding: rem(8) rem(14);
+    resize: none;
+  }
+
+  &__btn {
+    position: relative;
+    display: block;
+    width: 13%;
+    height: rem(40);
+    border: 1px solid $dark-gray;
+    border-radius: rem(2);
+    margin-left: auto;
+    background-color: transparent;
+    font-size: rem(16);
+    color: $black;
+    z-index: 2;
+
+    &:hover {
+      box-shadow: 0 rem(2) rem(5) 0 rgba(0, 0, 0, 0.3);
+      border-color: $black-blue;
+      background-color: #fff;
+      color: $black-blue;
+    }
+
+    &:active {
+      border-color: $black-blue;
+      background-color: $black-blue;
+      color: #fff;
+    }
+  }
+}
