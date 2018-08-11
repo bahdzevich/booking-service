@@ -16,6 +16,8 @@ public abstract class User {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
+  private String name;
+
   private String email;
 
   private String phone;
