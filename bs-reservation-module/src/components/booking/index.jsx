@@ -240,7 +240,7 @@ class Booking extends Component {
               resBid={this.resBid}
               />
           }
-          { (activeBlock === 'success') && <Success data={dataInfo} />}
+          { (activeBlock === 'success') && <Success />}
           { (index !== 0 && index !== blocks.length - 1) && <Back changeBack={this.changeBack} />}
         </div>
         <Status blocks={blocks} />

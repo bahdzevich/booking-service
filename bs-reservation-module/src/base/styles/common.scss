@@ -14,8 +14,12 @@ html {
     font-size: 19px;
   }
 
+  @media (min-width: 360px) and (max-width: 374px) {
+    font-size: 15px;
+  }
+
   @media (max-width: 359px) {
-    font-size: 14px;
+    font-size: 13.5px;
   }
 }
 

@@ -33,7 +33,7 @@ class Form extends Component {
             <textarea className='form__textarea' ref='resUserText' onChange={this.props.changeUserText} placeholder='Введите дополнительный текст'></textarea>
           </div>
 
-          <button className='form__btn' onClick={this.props.resBid}>⇨</button>
+          <button className='form__btn' onClick={this.props.resBid}>Забронировать  ⇨</button>
         </div>
       </div>
     )

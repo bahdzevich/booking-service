@@ -2,6 +2,7 @@
 
 .success {
   &__head {
+    margin-top: rem(32);
     margin-bottom: rem(32);
   }
 
@@ -9,7 +10,7 @@
   &__s-title,
   &__t-title {
     width: 100%;
-    // text-align: center;
+    text-align: center;
   }
 
   &__title {
