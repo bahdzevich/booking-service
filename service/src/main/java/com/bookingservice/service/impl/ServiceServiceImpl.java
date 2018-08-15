@@ -1,13 +1,16 @@
 package com.bookingservice.service.impl;
 
+import com.bookingservice.model.domain.Service;
 import com.bookingservice.repository.ServiceRepository;
 import com.bookingservice.service.IServiceService;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.util.Assert;
 
-@Service
+@org.springframework.stereotype.Service
 public class ServiceServiceImpl implements IServiceService {
 
   private ServiceRepository serviceRepository;
@@ -17,34 +20,46 @@ public class ServiceServiceImpl implements IServiceService {
   }
 
   @Override
-  public com.bookingservice.model.domain.Service create(
-      com.bookingservice.model.domain.Service service) {
-    return null;
+  public Service create(Service service) {
+    return serviceRepository.save(service);
   }
 
   @Override
-  public Optional<com.bookingservice.model.domain.Service> findOne(Long aLong) {
-    return Optional.empty();
+  public Optional<Service> findOne(Long id) {
+    Assert.notNull(id, "Service ID is null");
+    return serviceRepository.findById(id);
   }
 
   @Override
-  public List<com.bookingservice.model.domain.Service> findAll() {
-    return null;
+  public List<Service> findAll() {
+    return serviceRepository.findAll();
   }
 
   @Override
-  public Page<com.bookingservice.model.domain.Service> findPage(Integer page, Integer size) {
-    return null;
+  public Page<Service> findPage(Integer page, Integer size) {
+    Assert.notNull(page, "Page is null");
+    Assert.notNull(size, "Size is null");
+    return serviceRepository.findAll(PageRequest.of(page, size));
   }
 
   @Override
-  public Optional<com.bookingservice.model.domain.Service> update(Long aLong,
-      com.bookingservice.model.domain.Service service) {
-    return Optional.empty();
+  public Optional<Service> update(Long id, Service service) {
+    Assert.notNull(id, "Service ID is null");
+    Assert.notNull(service, "Service is null");
+    Service savedService = null;
+    if (serviceRepository.existsById(id)) {
+      savedService = serviceRepository.save(service);
+    }
+    return Optional.ofNullable(savedService);
   }
 
   @Override
-  public Optional<com.bookingservice.model.domain.Service> delete(Long aLong) {
-    return Optional.empty();
+  public Optional<Service> delete(Long id) {
+    Assert.notNull(id, "Service ID is null");
+    Optional<Service> service = serviceRepository.findById(id);
+    if (service.isPresent()) {
+      serviceRepository.deleteById(id);
+    }
+    return service;
   }
 }

@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 @Service
 public class ProviderServiceImpl implements IProviderService {
@@ -21,31 +23,45 @@ public class ProviderServiceImpl implements IProviderService {
 
   @Override
   public Provider create(Provider provider) {
-    return null;
+    return providerRepository.save(provider);
   }
 
   @Override
-  public Optional<Provider> findOne(Long aLong) {
-    return Optional.empty();
+  public Optional<Provider> findOne(Long id) {
+    Assert.notNull(id, "Provider ID is null");
+    return providerRepository.findById(id);
   }
 
   @Override
   public List<Provider> findAll() {
-    return null;
+    return providerRepository.findAll();
   }
 
   @Override
   public Page<Provider> findPage(Integer page, Integer size) {
-    return null;
+    Assert.notNull(page, "Page is null");
+    Assert.notNull(size, "Size is null");
+    return providerRepository.findAll(PageRequest.of(page, size));
   }
 
   @Override
-  public Optional<Provider> update(Long aLong, Provider provider) {
-    return Optional.empty();
+  public Optional<Provider> update(Long id, Provider provider) {
+    Assert.notNull(id, "Provider ID is null");
+    Assert.notNull(provider, "Provider is null");
+    Provider savedClient = null;
+    if (providerRepository.existsById(id)) {
+      savedClient = providerRepository.save(provider);
+    }
+    return Optional.ofNullable(savedClient);
   }
 
   @Override
-  public Optional<Provider> delete(Long aLong) {
-    return Optional.empty();
+  public Optional<Provider> delete(Long id) {
+    Assert.notNull(id, "Provider ID is null");
+    Optional<Provider> provider = providerRepository.findById(id);
+    if (provider.isPresent()) {
+      providerRepository.deleteById(id);
+    }
+    return provider;
   }
 }
