@@ -1,6 +1,6 @@
 package com.bookingservice.controller;
 
-import com.bookingservice.model.domain.Admin;
+import com.bookingservice.model.domain.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,35 +10,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/admin", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class AdminController implements IBaseController<Admin, Admin, Long>{
-
+@RequestMapping(value = "/client", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+public class ClientController implements IBaseController<Client, Client, Long>{
     @Autowired
-    AdminServiceImpl adminServiceImpl;
+    ClientServiceImpl clientServiceImpl;
 
     @PostMapping
-    public ResponseEntity<Admin> create(@RequestBody Admin admin) {
-       return new ResponseEntity<>(adminServiceImpl.create(admin), HttpStatus.CREATED);
+    public ResponseEntity<Client> create(@RequestBody Client client) {
+        return new ResponseEntity<>(clientServiceImpl.create(client), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id:[0-9]+}")
     @Override
-    public ResponseEntity<Admin> findOne(@PathVariable Long id) {
-        return adminServiceImpl.findOne(id).map(admin -> new ResponseEntity<>(admin, HttpStatus.OK))
+    public ResponseEntity<Client> findOne(@PathVariable Long id) {
+        return clientServiceImpl.findOne(id).map(client -> new ResponseEntity<>(client, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping
     @Override
-    public ResponseEntity<List<Admin>> findAll() {
-        return new ResponseEntity<>(adminServiceImpl.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Client>> findAll() {
+        return new ResponseEntity<>(clientServiceImpl.findAll(), HttpStatus.OK);
     }
 
     @PutMapping("/{id:[0-9]+}")
     @Override
-    public ResponseEntity<Admin> update(@PathVariable Long id, @RequestBody Admin admin) {
-        return adminServiceImpl.update(id, admin)
-                .map(updatedAdmin -> new ResponseEntity<>(updatedAdmin, HttpStatus.OK))
+    public ResponseEntity<Client> update(@PathVariable Long id, @RequestBody Client client) {
+        return clientServiceImpl.update(id, client)
+                .map(updatedClient -> new ResponseEntity<>(updatedClient, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -54,9 +53,9 @@ public class AdminController implements IBaseController<Admin, Admin, Long>{
 
     @DeleteMapping("/{id:[0-9]+}")
     @Override
-    public ResponseEntity<Admin> delete(@PathVariable Long id) {
-        return adminServiceImpl.delete(id)
-                .map(admin -> new ResponseEntity<>(admin, HttpStatus.OK))
+    public ResponseEntity<Client> delete(@PathVariable Long id) {
+        return clientServiceImpl.delete(id)
+                .map(client -> new ResponseEntity<>(client, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }
