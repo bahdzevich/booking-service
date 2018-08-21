@@ -7,60 +7,7 @@ class Times extends Component {
   constructor(){
     super();
     this.state = {
-      data: [
-        {
-          id: '0',
-          time: '08:00-09:00'
-        },
-        {
-          id: '1',
-          time: '9:00-10:00'
-        },
-        {
-          id: '2',
-          time: '10:00-11:00'
-        },
-        {
-          id: '3',
-          time: '11:00-12:00'
-        },
-        {
-          id: '4',
-          time: '12:00-13:00'
-        },
-        {
-          id: '5',
-          time: '14:00-15:00'
-        },
-        {
-          id: '6',
-          time: '12:00-13:00'
-        },
-        {
-          id: '7',
-          time: '13:00-14:00'
-        },
-        {
-          id: '8',
-          time: '15:00-16:00'
-        },
-        {
-          id: '9',
-          time: '16:00-17:00'
-        },
-        {
-          id: '10',
-          time: '17:00-18:00'
-        },
-        {
-          id: '11',
-          time: '19:00-20:00'
-        },
-        {
-          id: '12',
-          time: '21:00-22:00'
-        },
-      ],
+      data: [],
     }
 
     this.searchTime = this.searchTime.bind(this);
@@ -75,7 +22,19 @@ class Times extends Component {
     }
     return false;
   }
-
+  componentWillMount() {
+    fetch('//5b7c5144b4516f0014878176.mockapi.io/booking/times', {
+      method: 'get',
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      },
+    })
+    .then(response => response.ok ? response.json() : console.error('Error while fetching deficit'))
+    .then(authResult => {
+      console.log(authResult);
+      this.setState({data: authResult});
+    });
+  }
   render() {
     const minTime = this.props.minTime;
     const maxTime = this.props.maxTime;
@@ -92,7 +51,7 @@ class Times extends Component {
 
       activeTime = this.searchTime(time);
 
-      times.push(<Time timeFrom={timeFrom} timeTo={timeTo} time={time} activeTime={activeTime} key={`time-${i}`} changeTime={this.props.changeTime} />);
+      times.push(<Time timeFrom={timeFrom} timeTo={timeTo} time={time} activeTime={activeTime} key={`time-${i}`} changeBlocks={this.props.changeBlocks} />);
     }
 
     return(
@@ -109,7 +68,7 @@ class Times extends Component {
 Times.propTypes = {
   minTime: PropTypes.number,
   maxTime: PropTypes.number,
-  changeTime: PropTypes.func
+  changeBlocks: PropTypes.func
 }
 
 export default Times;

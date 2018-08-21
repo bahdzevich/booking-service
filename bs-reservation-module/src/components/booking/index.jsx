@@ -46,9 +46,7 @@ class Booking extends Component {
       resUserPhone: '',
       resUserText: '',
     }
-    this.changeDay = this.changeDay.bind(this);
-    this.changeTime = this.changeTime.bind(this);
-    this.changeName = this.changeName.bind(this);
+    this.changeBlocks = this.changeBlocks.bind(this);
     this.changeOrders = this.changeOrders.bind(this);
     this.changeBack = this.changeBack.bind(this);
     this.translatName = this.translatName.bind(this);
@@ -95,7 +93,7 @@ class Booking extends Component {
       blocks: blocks,
     });
 
-    console.log('resDate: ', this.state.resDate);
+    // console.log('resDate: ', this.state.resDate);
     console.log('resUserName: ', this.state.resUserName);
     console.log('resUserSurname: ', this.state.resUserSurname);
     console.log('resUserEmail: ', this.state.resUserEmail);
@@ -158,29 +156,11 @@ class Booking extends Component {
       blocks: nBlocks,
     });
   }
-  changeDay(date) {
-    const blocks = this.returnSelectedBlocks('calendar', date);
+  changeBlocks(name, value) {
+    const blocks = this.returnSelectedBlocks(name, value);
 
     this.setState({
       blocks: blocks,
-      resDate: date,
-    });
-  }
-
-  changeTime(time) {
-    const blocks = this.returnSelectedBlocks('times', time);
-
-    this.setState({
-      blocks: blocks,
-      resTime: time,
-    });
-  }
-  changeName(name) {
-    const blocks = this.returnSelectedBlocks('specialists', name);
-
-    this.setState({
-      blocks: blocks,
-      resName: name,
     });
   }
   translatName(name) {
@@ -229,9 +209,9 @@ class Booking extends Component {
         { (!allEvents) && <Switch blocks={blocks} changeOrders={this.changeOrders} /> }
         <div className='booking__content-wrap'>
           { <InfoBox data={dataInfo} allRes={allRes} /> }
-          { (activeBlock === 'calendar') && <Calendar changeDay={this.changeDay} /> }
-          { (activeBlock === 'times') && <Times minTime={8} maxTime={22} changeTime={this.changeTime} /> }
-          { (activeBlock === 'specialists') && <Specialists changeName={this.changeName} /> }
+          { (activeBlock === 'calendar') && <Calendar changeBlocks={this.changeBlocks} /> }
+          { (activeBlock === 'times') && <Times minTime={8} maxTime={22} changeBlocks={this.changeBlocks} /> }
+          { (activeBlock === 'specialists') && <Specialists changeBlocks={this.changeBlocks} /> }
           { (activeBlock === 'form') &&
             <Form
               changeUserName={this.changeUserName} changeUserSurname={this.changeUserSurname}

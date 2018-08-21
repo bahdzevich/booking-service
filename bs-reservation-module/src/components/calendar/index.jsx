@@ -7,36 +7,7 @@ class Calendar extends Component {
   constructor(){
     super();
     this.state = {
-      data: [
-        {
-          id: '0',
-          date: '10.08.2018',
-        },
-        {
-          id: '1',
-          date: '12.08.2018',
-        },
-        {
-          id: '2',
-          date: '13.08.2018',
-        },
-        {
-          id: '3',
-          date: '16.08.2018',
-        },
-        {
-          id: '4',
-          date: '18.08.2018',
-        },
-        {
-          id: '5',
-          date: '21.08.2018',
-        },
-        {
-          id: '6',
-          date: '26.08.2018',
-        },
-      ],
+      data: [],
       nowDate: +new Date().setHours(0, 0, 0, 0),
       date: new Date(),
       monthA: 'январь,февраль,март,апрель,май,июнь,июль,август,сентябрь,октябрь,доябрь,декабрь'.split(','),
@@ -82,8 +53,6 @@ class Calendar extends Component {
     }
     return false;
   }
-  componentWillUpdate() {
-  }
   updateMonth() {
     const nYear = new Date().getFullYear();
     const nMonth = new Date().getMonth();
@@ -100,12 +69,20 @@ class Calendar extends Component {
       monthName: this.state.monthA[this.state.date.getMonth()]
     });
   }
-  componentDidMount() {
+  componentWillMount() {
+    fetch('//5b7c5144b4516f0014878176.mockapi.io/booking/date', {
+      method: 'get',
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      },
+    })
+    .then(response => response.ok ? response.json() : console.error('Error while fetching deficit'))
+    .then(authResult => {
+      console.log(authResult);
+      this.setState({data: authResult});
+    });
     this.updateMonth();
   }
-  // compareDate() {
-  //   return +this.state.date < +this.state.nowDate;
-  // }
   render() {
     const monthName = this.state.monthName,
           month = this.state.date.getMonth(),
@@ -123,7 +100,7 @@ class Calendar extends Component {
       dataDate = ('0' + (i + 1)).slice(-2) + '.' + ('0' + (month + 1)).slice(-2) + '.' + year;
       activeDay = this.searchDay(dataDate);
 
-      days.push(<Day number={i+1} dataDate={dataDate} flagToday={flagToday} activeDay={activeDay} key={`day-${i}`} changeDay={this.props.changeDay}/>);
+      days.push(<Day number={i+1} dataDate={dataDate} flagToday={flagToday} activeDay={activeDay} key={`day-${i}`} changeBlocks={this.props.changeBlocks}/>);
     }
 
     return(
@@ -143,7 +120,7 @@ class Calendar extends Component {
 };
 
 Calendar.propTypes = {
-  changeDay: PropTypes.func
+  changeBlocks: PropTypes.func
 }
 
 export default Calendar;

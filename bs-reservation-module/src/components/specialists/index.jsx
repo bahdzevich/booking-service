@@ -7,44 +7,21 @@ class Specialists extends Component {
   constructor(){
     super();
     this.state = {
-      data: [
-        {
-          id: '0',
-          name: 'Абрамов Владлен Романович',
-          description: 'Стоматолог',
-        },
-        {
-          id: '1',
-          name: 'Белозёров Илларион Борисович',
-          description: 'Терапевт',
-        },
-        {
-          id: '3',
-          name: 'Мишин Давид Сергеевич',
-          description: 'Педиатр',
-        },
-        {
-          id: '4',
-          name: 'Рябов Игорь Львович',
-          description: 'Рентгенолог',
-        },
-        {
-          id: '5',
-          name: 'Якушев Александр Максимович',
-          description: 'Психиатр',
-        },
-        {
-          id: '6',
-          name: 'Хохлов Леон Дмитриевич',
-          description: 'Врач функциональной диагностики',
-        },
-        {
-          id: '7',
-          name: 'Овчинников Александр Евгеньевич',
-          description: 'Офтальмолог',
-        },
-      ],
+      data: [],
     }
+  }
+  componentWillMount() {
+    fetch('//5b7c5144b4516f0014878176.mockapi.io/booking/specialists', {
+      method: 'get',
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      },
+    })
+    .then(response => response.ok ? response.json() : console.error('Error while fetching deficit'))
+    .then(authResult => {
+      console.log(authResult);
+      this.setState({data: authResult});
+    });
   }
   render() {
     const data = this.state.data;
@@ -55,9 +32,9 @@ class Specialists extends Component {
         <div className='booking__title h2'>Выберите специалиста</div>
         <div className='specialists'>
           {data.length > 0 &&
-            data.map((item, i) => <Item data={item} key={`specialist-${i}`} changeName={this.props.changeName} />)
+            data.map((item, i) => <Item data={item} key={`specialist-${i}`} changeBlocks={this.props.changeBlocks} />)
           }
-          {data.length === 0 && 'нет специалистов' }
+          {data.length === 0 && 'Нет специалистов.' }
         </div>
       </div>
     )
@@ -65,7 +42,7 @@ class Specialists extends Component {
 };
 
 Specialists.propTypes = {
-  changeName: PropTypes.func
+  changeBlocks: PropTypes.func
 }
 
 export default Specialists;

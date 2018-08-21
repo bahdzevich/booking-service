@@ -10,7 +10,7 @@ class Day extends Component {
 
     return(
       <div className={'calendar__day' + (flagToday ? ' calendar__day--today' : '') + (activeDay ? '' : ' calendar__day--no-active')}
-            onClick={() => this.props.changeDay(dataDate)}>
+            onClick={() => this.props.changeBlocks('calendar', dataDate)}>
         <span className='calendar__day-number text-little'>{number}</span>
       </div>
     )
@@ -22,7 +22,7 @@ Day.propTypes = {
   dataDate: PropTypes.string,
   activeDay: PropTypes.bool,
   flagToday: PropTypes.bool,
-  changeDay: PropTypes.func,
+  changeBlocks: PropTypes.func,
 }
 
 export default Day;

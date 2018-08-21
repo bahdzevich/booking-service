@@ -6,7 +6,7 @@ class Item extends Component {
     const { name, description } = this.props.data;
 
     return(
-      <div className='specialists__item' onClick={() => this.props.changeName(name)}>
+      <div className='specialists__item' onClick={() => this.props.changeBlocks('specialists', name)}>
         <div className='specialists__name text'>{name}</div>
         <p className='specialists__description text-little'>{description}</p>
       </div>
@@ -19,7 +19,7 @@ Item.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string
   }),
-  changeName: PropTypes.func
+  changeBlocks: PropTypes.func
 }
 
 export default Item;
