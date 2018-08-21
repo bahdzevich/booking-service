@@ -11,7 +11,7 @@ class Specialists extends Component {
     }
   }
   componentWillMount() {
-    fetch('//5b7c5144b4516f0014878176.mockapi.io/booking/specialists', {
+    fetch('https://5b7c5144b4516f0014878176.mockapi.io/booking/specialists', {
       method: 'get',
       headers: {
         "Content-type": "application/json; charset=UTF-8"
