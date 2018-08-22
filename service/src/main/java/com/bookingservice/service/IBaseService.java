@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 /**
  * Base interface for all services.
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
  * @param <OUT> is an output type (example: UserOutputDto)
  * @param <PK> is an entity primary key type
  */
+@Service
 public interface IBaseService<IN, OUT, PK extends Serializable> {
 
   OUT create(IN in);
