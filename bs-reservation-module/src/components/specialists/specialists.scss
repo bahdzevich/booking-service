@@ -2,6 +2,7 @@
 
 .specialists {
   max-height: rem(264);
+  min-height: rem(156);
   overflow: auto;
 
   &__name,

@@ -10,7 +10,7 @@ class Day extends Component {
 
     return(
       <div className={'calendar__day' + (flagToday ? ' calendar__day--today' : '') + (activeDay ? '' : ' calendar__day--no-active')}
-            onClick={() => this.props.changeBlocks('calendar', dataDate)}>
+            onClick={() => this.props.changeBlocks('date', dataDate)}>
         <span className='calendar__day-number text-little'>{number}</span>
       </div>
     )

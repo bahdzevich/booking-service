@@ -16,17 +16,17 @@ class Booking extends Component {
     this.state = {
       blocks: [
         {
-          name: 'calendar',
+          name: 'date',
           flag: false,
           value: '',
         },
         {
-          name: 'times',
+          name: 'time',
           flag: false,
           value: '',
         },
         {
-          name: 'specialists',
+          name: 'specialist',
           flag: false,
           value: '',
         },
@@ -40,6 +40,7 @@ class Booking extends Component {
           flag: false,
         },
       ],
+      selOptions: '',
       resUserName: '',
       resUserSurname: '',
       resUserEmail: '',
@@ -51,6 +52,7 @@ class Booking extends Component {
     this.changeBack = this.changeBack.bind(this);
     this.translatName = this.translatName.bind(this);
     this.returnSelectedBlocks = this.returnSelectedBlocks.bind(this);
+    this.setOptions = this.setOptions.bind(this);
     this.changeUserName = this.changeUserName.bind(this);
     this.changeUserSurname = this.changeUserSurname.bind(this);
     this.changeUserEmail = this.changeUserEmail.bind(this);
@@ -162,17 +164,30 @@ class Booking extends Component {
     this.setState({
       blocks: blocks,
     });
+    this.setOptions();
   }
   translatName(name) {
     let nName = '';
-    (name === 'calendar') && (nName = 'Дата');
-    (name === 'times') && (nName = 'Время');
-    (name === 'specialists') && (nName = 'Специалист');
+    (name === 'date') && (nName = 'Дата');
+    (name === 'time') && (nName = 'Время');
+    (name === 'specialist') && (nName = 'Специалист');
 
     return nName;
   }
+  setOptions() {
+    let options = '';
+    this.state.blocks.forEach((item) => {
+      if (item.name !== 'success' && item.name !== 'form') {
+        options += `?${item.name}`;
+        options += `=${item.value}`;
+      }
+    });
+
+    this.setState({selOptions: options});
+  }
   render() {
     const blocks = this.state.blocks,
+          selOptions = this.state.selOptions,
           dataInfo = [
             {
               name: this.translatName(this.state.blocks[0].name),
@@ -209,9 +224,9 @@ class Booking extends Component {
         { (!allEvents) && <Switch blocks={blocks} changeOrders={this.changeOrders} /> }
         <div className='booking__content-wrap'>
           { <InfoBox data={dataInfo} allRes={allRes} /> }
-          { (activeBlock === 'calendar') && <Calendar changeBlocks={this.changeBlocks} /> }
-          { (activeBlock === 'times') && <Times minTime={8} maxTime={22} changeBlocks={this.changeBlocks} /> }
-          { (activeBlock === 'specialists') && <Specialists changeBlocks={this.changeBlocks} /> }
+          { (activeBlock === 'date') && <Calendar changeBlocks={this.changeBlocks} selOptions={selOptions} /> }
+          { (activeBlock === 'time') && <Times minTime={8} maxTime={22} changeBlocks={this.changeBlocks} selOptions={selOptions}/> }
+          { (activeBlock === 'specialist') && <Specialists changeBlocks={this.changeBlocks} selOptions={selOptions} /> }
           { (activeBlock === 'form') &&
             <Form
               changeUserName={this.changeUserName} changeUserSurname={this.changeUserSurname}

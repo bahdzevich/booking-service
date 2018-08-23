@@ -11,16 +11,16 @@ class Specialists extends Component {
     }
   }
   componentWillMount() {
-    fetch('https://5b7c5144b4516f0014878176.mockapi.io/booking/specialists', {
+    fetch(`https://5b7c5144b4516f0014878176.mockapi.io/booking/specialists${this.props.selOptions}`, {
       method: 'get',
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       },
     })
-    .then(response => response.ok ? response.json() : console.error('Error while fetching deficit'))
-    .then(authResult => {
-      console.log(authResult);
-      this.setState({data: authResult});
+    .then(response => response.ok ? response.json() : console.error('Error while fetching specialists.'))
+    .then(result => {
+      console.log(result);
+      result && this.setState({data: result});
     });
   }
   render() {
@@ -42,6 +42,7 @@ class Specialists extends Component {
 };
 
 Specialists.propTypes = {
+  selOptions: PropTypes.string,
   changeBlocks: PropTypes.func
 }
 

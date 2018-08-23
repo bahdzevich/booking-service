@@ -12,7 +12,7 @@ class Time extends Component {
           // data-time-to={timeTo + ':00'}
     return(
       <div className={'times__item' + (activeTime ? '' : ' times__item--no-active')}
-            onClick={() => this.props.changeBlocks('times', time)} >
+            onClick={() => this.props.changeBlocks('time', time)} >
         <span className='times__text times__text--form text-little'>{timeFrom}:00</span>
         <span className='times__text times__text--dash text-little'>–</span>
         <span className='times__text times__text--to text-little'>{timeTo}:00</span>

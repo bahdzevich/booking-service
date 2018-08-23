@@ -45,6 +45,7 @@ class Calendar extends Component {
     this.updateMonth();
   }
   searchDay(search) {
+    // console.log(this.state.data, this.state.data.length);
     let i = this.state.data.length;
     while (i--) {
       if (this.state.data[i].date === search) {
@@ -56,7 +57,6 @@ class Calendar extends Component {
   updateMonth() {
     const nYear = new Date().getFullYear();
     const nMonth = new Date().getMonth();
-
 
     if (nMonth === this.state.date.getMonth() && nYear === this.state.date.getFullYear()) {
       this.setState({ today: this.state.date.getDate() });
@@ -70,16 +70,16 @@ class Calendar extends Component {
     });
   }
   componentWillMount() {
-    fetch('https://5b7c5144b4516f0014878176.mockapi.io/booking/date', {
+    fetch(`https://5b7c5144b4516f0014878176.mockapi.io/booking/date${this.props.selOptions}`, {
       method: 'get',
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       },
     })
-    .then(response => response.ok ? response.json() : console.error('Error while fetching deficit'))
-    .then(authResult => {
-      console.log(authResult);
-      this.setState({data: authResult});
+    .then(response => response.ok ? response.json() : console.error('Error while fetching dates.'))
+    .then(result => {
+      console.log(result);
+      result && this.setState({data: result});
     });
     this.updateMonth();
   }
@@ -106,7 +106,7 @@ class Calendar extends Component {
     return(
       <div className='booking__content'>
         <div className='booking__title h2'>Выберите время</div>
-        <div className='calendar'>
+        <div className='date'>
           <div className='calendar__nav'>
             <button className='calendar__nav-arrow calendar__nav-arrow--prev' onClick={this.switchPrevMonth}>⇦</button>
             <div className='calendar__nav-month h3'>{monthName}, {year}</div>
@@ -120,6 +120,7 @@ class Calendar extends Component {
 };
 
 Calendar.propTypes = {
+  selOptions: PropTypes.string,
   changeBlocks: PropTypes.func
 }
 

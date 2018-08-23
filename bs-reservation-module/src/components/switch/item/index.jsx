@@ -11,9 +11,9 @@ class Item extends Component {
 
     return(
       <div className={'switch__item' + className} onClick={() => this.props.changeOrders(name)}>
-        { (name === 'calendar') && <Calendar width={20} height={20}/> }
-        { (name === 'times') && <Clock width={20} height={20}/> }
-        { (name === 'specialists') && <Worker width={20} height={20}/> }
+        { (name === 'date') && <Calendar width={20} height={20}/> }
+        { (name === 'time') && <Clock width={20} height={20}/> }
+        { (name === 'specialist') && <Worker width={20} height={20}/> }
       </div>
     )
   }

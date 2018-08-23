@@ -23,16 +23,16 @@ class Times extends Component {
     return false;
   }
   componentWillMount() {
-    fetch('https://5b7c5144b4516f0014878176.mockapi.io/booking/times', {
+    fetch(`https://5b7c5144b4516f0014878176.mockapi.io/booking/times${this.props.selOptions}`, {
       method: 'get',
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       },
     })
-    .then(response => response.ok ? response.json() : console.error('Error while fetching deficit'))
-    .then(authResult => {
-      console.log(authResult);
-      this.setState({data: authResult});
+    .then(response => response.ok ? response.json() : console.error('Error while fetching times.'))
+    .then(result => {
+      console.log(result);
+      result && this.setState({data: result});
     });
   }
   render() {
@@ -68,7 +68,8 @@ class Times extends Component {
 Times.propTypes = {
   minTime: PropTypes.number,
   maxTime: PropTypes.number,
-  changeBlocks: PropTypes.func
+  changeBlocks: PropTypes.func,
+  selOptions: PropTypes.string,
 }
 
 export default Times;
