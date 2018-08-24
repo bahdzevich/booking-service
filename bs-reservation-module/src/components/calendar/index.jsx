@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import Day from './day';
+import Loading from '../loading';
 import "./calendar.scss";
 
 class Calendar extends Component {
@@ -14,13 +15,14 @@ class Calendar extends Component {
       monthName: '',
       maxDay: 0,
       taday: 0,
-      prevDay: false
+      prevDay: false,
+      getFlag: false,
     }
     this.getNumberOfDays = this.getNumberOfDays.bind(this);
     this.switchPrevMonth = this.switchPrevMonth.bind(this);
     this.switchNextMonth = this.switchNextMonth.bind(this);
     this.searchDay = this.searchDay.bind(this);
-    // this.compareDate = this.compareDate.bind(this);
+    this.getData = this.getData.bind(this);
   }
   getNumberOfDays(year, month) {
     const isLeap = ((year % 4) === 0 && ((year % 100) !== 0 || (year % 400) === 0));
@@ -45,7 +47,6 @@ class Calendar extends Component {
     this.updateMonth();
   }
   searchDay(search) {
-    // console.log(this.state.data, this.state.data.length);
     let i = this.state.data.length;
     while (i--) {
       if (this.state.data[i].date === search) {
@@ -69,7 +70,7 @@ class Calendar extends Component {
       monthName: this.state.monthA[this.state.date.getMonth()]
     });
   }
-  componentWillMount() {
+  getData() {
     fetch(`https://5b7c5144b4516f0014878176.mockapi.io/booking/date${this.props.selOptions}`, {
       method: 'get',
       headers: {
@@ -80,11 +81,16 @@ class Calendar extends Component {
     .then(result => {
       console.log(result);
       result && this.setState({data: result});
+      this.setState({getFlag: true});
     });
     this.updateMonth();
   }
+  componentWillMount() {
+    this.getData();
+  }
   render() {
-    const monthName = this.state.monthName,
+    const getFlag = this.state.getFlag,
+          monthName = this.state.monthName,
           month = this.state.date.getMonth(),
           year = this.state.date.getFullYear(),
           maxDay = this.state.maxDay,
@@ -106,13 +112,14 @@ class Calendar extends Component {
     return(
       <div className='booking__content'>
         <div className='booking__title h2'>Выберите время</div>
-        <div className='date'>
+        <div className='calendar'>
           <div className='calendar__nav'>
             <button className='calendar__nav-arrow calendar__nav-arrow--prev' onClick={this.switchPrevMonth}>⇦</button>
             <div className='calendar__nav-month h3'>{monthName}, {year}</div>
             <button className='calendar__nav-arrow calendar__nav-arrow--next' onClick={this.switchNextMonth}>⇨</button>
           </div>
           <div className='calendar__month'>{days}</div>
+          {(!getFlag) && <Loading />}
         </div>
       </div>
     )
