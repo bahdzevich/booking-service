@@ -7,7 +7,7 @@
   &__text {
     width: 100%;
     display: block;
-    transition: 0.4s;
+    transition: 0.4s ease;
     line-height: 1;
 
     &--from {
@@ -36,7 +36,7 @@
     margin-right: 8.75%;
     margin-bottom: rem(6);
     cursor: pointer;
-    transition: 0.4s;
+    transition: 0.4s ease;
 
     &:nth-of-type(3n) {
       margin-right: 0;

@@ -23,6 +23,7 @@ class Calendar extends Component {
     this.switchNextMonth = this.switchNextMonth.bind(this);
     this.searchDay = this.searchDay.bind(this);
     this.getData = this.getData.bind(this);
+    this.checkGetFirstDay = this.checkGetFirstDay.bind(this);
   }
   getNumberOfDays(year, month) {
     const isLeap = ((year % 4) === 0 && ((year % 100) !== 0 || (year % 400) === 0));
@@ -70,6 +71,11 @@ class Calendar extends Component {
       monthName: this.state.monthA[this.state.date.getMonth()]
     });
   }
+  checkGetFirstDay() {
+    const numberDay = new Date(this.state.date.setDate(1)).getDay() - 1;
+
+    return numberDay;
+  }
   getData() {
     fetch(`https://5b7c5144b4516f0014878176.mockapi.io/booking/date${this.props.selOptions}`, {
       method: 'get',
@@ -97,6 +103,7 @@ class Calendar extends Component {
           today = this.state.today;
 
     let days = [],
+        emptyDays = [],
         activeDay = false,
         flagToday = false,
         dataDate = 0;
@@ -109,6 +116,10 @@ class Calendar extends Component {
       days.push(<Day number={i+1} dataDate={dataDate} flagToday={flagToday} activeDay={activeDay} key={`day-${i}`} changeBlocks={this.props.changeBlocks}/>);
     }
 
+    for(let i = 0; i < this.checkGetFirstDay(); i++) {
+      emptyDays.push(<div className='calendar__day calendar__day--empty'></div>);
+    }
+
     return(
       <div className='booking__content'>
         <div className='booking__title h2'>Выберите время</div>
@@ -118,7 +129,10 @@ class Calendar extends Component {
             <div className='calendar__nav-month h3'>{monthName}, {year}</div>
             <button className='calendar__nav-arrow calendar__nav-arrow--next' onClick={this.switchNextMonth}>⇨</button>
           </div>
-          <div className='calendar__month'>{days}</div>
+          <div className='calendar__month'>
+            {emptyDays}
+            {days}
+          </div>
           {(!getFlag) && <Loading />}
         </div>
       </div>
