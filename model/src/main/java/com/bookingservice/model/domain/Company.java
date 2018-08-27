@@ -1,14 +1,15 @@
 package com.bookingservice.model.domain;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.Set;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * A class for a company account. A company account is used to manage the following entities: {@link
@@ -24,6 +25,11 @@ public class Company extends User {
 
   private String description;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<Provider> providers;
+  private Set<Provider> providers = new HashSet<>();
+
+  @JsonIgnore
+  @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<Service> services = new HashSet<>();
 }

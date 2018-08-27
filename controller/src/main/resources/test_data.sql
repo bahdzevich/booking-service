@@ -13,11 +13,11 @@ INSERT INTO "BOOKING_SERVICE".public.company (id, email, name, phone, secret, de
     VALUES (2,'2-company@mail.com','Second Company','+375330000002','password','This is a second company');
 
 -- Services
-INSERT INTO "BOOKING_SERVICE".public.service (id, description, duration, max_client_quantity, name)
-    VALUES (1, 'First service of the first company', 3600, 1, 'Service-1');
+INSERT INTO "BOOKING_SERVICE".public.service (id, description, duration, max_client_quantity, name, company_id)
+    VALUES (1, 'First service of the first company', 3600, 1, 'Service-1', 1);
 
-INSERT INTO "BOOKING_SERVICE".public.service (id, description, duration, max_client_quantity, name)
-    VALUES (2, 'Second service of the first company', 5400, 3, 'Service-2');
+INSERT INTO "BOOKING_SERVICE".public.service (id, description, duration, max_client_quantity, name, company_id)
+    VALUES (2, 'Second service of the first company', 5400, 3, 'Service-2', 1);
 
 -- Providers
 INSERT INTO "BOOKING_SERVICE".public.provider (id, email, name, phone, secret, company_id)
