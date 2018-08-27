@@ -1,11 +1,19 @@
 package com.bookingservice.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Set;
 
 /**
  * A class represents a {@link Provider} working schedule for a particular date. It includes a set
@@ -26,9 +34,11 @@ public class ScheduleForDate {
 
   private LocalDate localDate;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "scheduleForDate")
-  private Set<PeriodForDate> periodForDateSet;
+  private Set<PeriodForDate> periodForDateSet = new HashSet<>();
 
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   private Provider provider;
 }

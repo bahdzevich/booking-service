@@ -1,10 +1,16 @@
 package com.bookingservice.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.LocalTime;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.time.LocalTime;
 
 /** A class is used to represent an interval o working time for a particular day of week. */
 @Entity
@@ -18,8 +24,10 @@ public class PeriodForDay {
   private Long id;
 
   private LocalTime startTime;
+
   private LocalTime endTime;
 
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   private ScheduleForDay scheduleForDay;
 }
