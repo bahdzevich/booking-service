@@ -34,7 +34,6 @@ class Specialists extends Component {
   render() {
     const getFlag = this.state.getFlag,
           data = this.state.data;
-    // console.log(data);
 
     return(
       <div className='booking__content'>
@@ -43,7 +42,7 @@ class Specialists extends Component {
           {data.length > 0 &&
             data.map((item, i) => <Item data={item} key={`specialist-${i}`} changeBlocks={this.props.changeBlocks} />)
           }
-          {data.length === 0 && 'Нет специалистов.' }
+          {data.length === 0 && getFlag && 'Нет специалистов.' }
         </div>
         {(!getFlag) && <Loading />}
       </div>

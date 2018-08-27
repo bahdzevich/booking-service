@@ -117,7 +117,7 @@ class Calendar extends Component {
     }
 
     for(let i = 0; i < this.checkGetFirstDay(); i++) {
-      emptyDays.push(<div className='calendar__day calendar__day--empty'></div>);
+      emptyDays.push(<div className='calendar__day calendar__day--empty' key={`day-empty${i}`}></div>);
     }
 
     return(
