@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Abstract REST controller with implemented CRUD operations.
+ *
  * @param <REQUEST>
  * @param <RESPONSE>
  * @param <PK>
@@ -53,13 +53,13 @@ public abstract class AbstractCrudRestController<
     return new ResponseEntity<>(responseList, HttpStatus.OK);
   }
 
-  @GetMapping
-  public ResponseEntity<List<RESPONSE>> foundPage(
-      @RequestParam(value = "page") Integer pageNumber,
-      @RequestParam(value = "size") Integer pageSize) {
-    List<RESPONSE> list = service.findPage(pageNumber, pageSize).getContent();
-    return new ResponseEntity<>(list, HttpStatus.OK);
-  }
+  //  @GetMapping
+  //  public ResponseEntity<List<RESPONSE>> foundPage(
+  //      @RequestParam(value = "page") Integer pageNumber,
+  //      @RequestParam(value = "size") Integer pageSize) {
+  //    List<RESPONSE> list = service.findPage(pageNumber, pageSize).getContent();
+  //    return new ResponseEntity<>(list, HttpStatus.OK);
+  //  }
 
   @PutMapping(value = "/{id:[0-9]+}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<RESPONSE> update(@PathVariable PK id, @RequestBody REQUEST request) {
