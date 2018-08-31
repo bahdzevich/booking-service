@@ -25,6 +25,8 @@
         <lombok.version>1.18.0</lombok.version>
         <mapstruct.version>1.2.0.Final</mapstruct.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
+        <spring-security-jwt.version>1.0.9.RELEASE</spring-security-jwt.version>
     </properties>
 
     <modules>
@@ -32,6 +34,7 @@
         <module>repository</module>
         <module>service</module>
         <module>controller</module>
+        <module>security</module>
     </modules>
 
     <dependencyManagement>
@@ -49,11 +52,28 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>-->
+
             <!-- Map struct -->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
+            </dependency>
+
+            <!-- JWT -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-jwt</artifactId>
+                <version>${spring-security-jwt.version}</version>
+            </dependency>
+
+            <!-- Spring Cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
