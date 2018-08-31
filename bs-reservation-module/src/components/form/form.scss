@@ -23,9 +23,9 @@
     margin-bottom: rem(4);
   }
 
-  &__input,
-  &__textarea {
+  &__input{
     width: 100%;
+    height: rem(40);
     padding: 0 rem(14);
     border-radius: rem(2);
     border: 1px solid $dark-gray;
@@ -44,23 +44,20 @@
       border-color: $black-blue;
       color: $black-blue;
     }
-  }
-
-  &__input {
-    height: rem(40);
 
     &--fail {
       border-color: $red;
     }
-  }
 
-  &__textarea {
-    max-width: 100%;
-    min-width: 100%;
-    min-height: rem(100);
-    max-height: rem(100);
-    padding: rem(8) rem(14);
-    resize: none;
+    &--textarea {
+      max-width: 100%;
+      min-width: 100%;
+      height: rem(100);
+      min-height: rem(100);
+      max-height: rem(100);
+      padding: rem(8) rem(14);
+      resize: none;
+    }
   }
 
   &__btn {

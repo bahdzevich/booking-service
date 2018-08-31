@@ -33,7 +33,7 @@ class Booking extends Component {
         {
           name: 'form',
           flag: false,
-          value: '',
+          value: {}
         },
         {
           name: 'success',
@@ -41,11 +41,6 @@ class Booking extends Component {
         },
       ],
       selOptions: '',
-      resUserName: '',
-      resUserSurname: '',
-      resUserEmail: '',
-      resUserPhone: '',
-      resUserText: '',
     }
     this.changeBlocks = this.changeBlocks.bind(this);
     this.changeOrders = this.changeOrders.bind(this);
@@ -53,54 +48,16 @@ class Booking extends Component {
     this.translatName = this.translatName.bind(this);
     this.returnSelectedBlocks = this.returnSelectedBlocks.bind(this);
     this.setOptions = this.setOptions.bind(this);
-    this.changeUserName = this.changeUserName.bind(this);
-    this.changeUserSurname = this.changeUserSurname.bind(this);
-    this.changeUserEmail = this.changeUserEmail.bind(this);
-    this.changeUserPhone = this.changeUserPhone.bind(this);
-    this.changeUserText = this.changeUserText.bind(this);
     this.resBid = this.resBid.bind(this);
   }
-  changeUserName(event) {
-    event.preventDefault();
-    this.setState({resUserName: event.target.value});
-
-    (event.target.value === '') ? event.target.classList.add('form__input--fail') : event.target.classList.remove('form__input--fail');
-  }
-  changeUserSurname(event) {
-    event.preventDefault();
-    this.setState({resUserSurname: event.target.value});
-
-    (event.target.value === '') ? event.target.classList.add('form__input--fail') : event.target.classList.remove('form__input--fail');
-  }
-  changeUserEmail(event) {
-    event.preventDefault();
-    this.setState({resUserEmail: event.target.value});
-
-    (event.target.value === '') ? event.target.classList.add('form__input--fail') : event.target.classList.remove('form__input--fail');
-  }
-  changeUserPhone(event) {
-    event.preventDefault();
-    this.setState({resUserPhone: event.target.value});
-
-    (event.target.value === '') ? event.target.classList.add('form__input--fail') : event.target.classList.remove('form__input--fail');
-  }
-  changeUserText(event) {
-    event.preventDefault();
-    this.setState({resUserText: event.target.value});
-  }
-  resBid(event) {
-    const blocks = this.returnSelectedBlocks('form');
+  resBid(userInfo) {
+    const blocks = this.returnSelectedBlocks('form', userInfo);
 
     this.setState({
       blocks: blocks,
     });
 
-    // console.log('resDate: ', this.state.resDate);
-    console.log('resUserName: ', this.state.resUserName);
-    console.log('resUserSurname: ', this.state.resUserSurname);
-    console.log('resUserEmail: ', this.state.resUserEmail);
-    console.log('resUserPhone: ', this.state.resUserPhone);
-    console.log('resUserText: ', this.state.resUserText);
+    console.log('blocks: ', this.state.blocks);
   }
   changeBack() {
     let nBlocks = this.state.blocks;
