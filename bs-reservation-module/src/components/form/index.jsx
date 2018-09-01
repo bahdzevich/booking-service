@@ -27,28 +27,18 @@ class Form extends Component {
   }
   checkInput(val, el, type) {
     let flag = true;
+    const reName = /^[а-яА-ЯёЁa-zA-Z]+$/;
+    const reEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
     if (type === 'name' || type === 'surname') {
-      if (val.length <= 2) {
-        flag = false;
-        el.classList.add('form__input--fail');
-      } else {
-        el.classList.remove('form__input--fail');
-      }
+      if (val.length <= 1) flag = false;
     } else if (type === 'email') {
-      if (val.indexOf('@') <= 0 || val.indexOf('.') <= 0){
-        flag = false;
-        el.classList.add('form__input--fail');
-      } else {
-        el.classList.remove('form__input--fail');
-      }
+      if (!reEmail.test(val)) flag = false;
     } else if (type === 'phone') {
-      if (val.length < 17) {
-        flag = false;
-        el.classList.add('form__input--fail');
-      } else {
-        el.classList.remove('form__input--fail');
-      }
+      if (val.length <= 18) flag = false;
     }
+
+    (flag) ? el.classList.remove('form__input--fail') : el.classList.add('form__input--fail');
 
     return flag;
   }
@@ -64,7 +54,7 @@ class Form extends Component {
   }
   componentDidMount() {
     const maskOptions = {
-      mask: '+{3}(375)00 000-00-00',
+      mask: '+{375} (00) 000-00-00',
     };
 
     new IMask(this.phone, maskOptions);
