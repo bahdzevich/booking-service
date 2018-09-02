@@ -1,33 +1,33 @@
 -- Clients
 INSERT INTO "BOOKING_SERVICE".public.client (id, email, name, phone, secret)
-    VALUES (1,'1-client@mail.com','First Client','+375290000001','password');
+    VALUES (6,'1-client@mail.com','First Client','+375290000001','password');
 
 INSERT INTO "BOOKING_SERVICE".public.client (id, email, name, phone, secret)
-    VALUES (2,'2-client@mail.com','Second Client','+375290000002','password');
+    VALUES (7,'2-client@mail.com','Second Client','+375290000002','password');
 
 -- Companies
 INSERT INTO "BOOKING_SERVICE".public.company (id, email, name, phone, secret, description)
-    VALUES (1,'1-company@mail.com','First Company','+375330000001','password','This is a first company');
+    VALUES (4,'1-company@mail.com','First Company','+375330000001','password','This is a first company');
 
 INSERT INTO "BOOKING_SERVICE".public.company (id, email, name, phone, secret, description)
-    VALUES (2,'2-company@mail.com','Second Company','+375330000002','password','This is a second company');
+    VALUES (5,'2-company@mail.com','Second Company','+375330000002','password','This is a second company');
 
 -- Services
 INSERT INTO "BOOKING_SERVICE".public.service (id, description, duration, max_client_quantity, name, company_id)
-    VALUES (1, 'First service of the first company', 3600, 1, 'Service-1', 1);
+    VALUES (1, 'First service of the first company', 3600, 1, 'Service-1', 4);
 
 INSERT INTO "BOOKING_SERVICE".public.service (id, description, duration, max_client_quantity, name, company_id)
-    VALUES (2, 'Second service of the first company', 5400, 3, 'Service-2', 1);
+    VALUES (2, 'Second service of the first company', 5400, 3, 'Service-2', 4);
 
 -- Providers
 INSERT INTO "BOOKING_SERVICE".public.provider (id, email, name, phone, secret, company_id)
-    VALUES (1, '1-provider@mail.com', 'First Provider', '+375440000001', 'password', 1);
+    VALUES (1, '1-provider@mail.com', 'First Provider', '+375440000001', 'password', 4);
 
 INSERT INTO "BOOKING_SERVICE".public.provider (id, email, name, phone, secret, company_id)
-    VALUES (2, '2-provider@mail.com', 'Second Provider', '+375440000002', 'password', 1);
+    VALUES (2, '2-provider@mail.com', 'Second Provider', '+375440000002', 'password', 4);
 
 INSERT INTO "BOOKING_SERVICE".public.provider (id, email, name, phone, secret, company_id)
-    VALUES (3, '3-provider@mail.com', 'Third Provider', '+375440000003', 'password', 1);
+    VALUES (3, '3-provider@mail.com', 'Third Provider', '+375440000003', 'password', 4);
 
 -- Service_Provider
 INSERT INTO "BOOKING_SERVICE".public.svc_pvd (svc_id, pvd_id)
@@ -44,51 +44,51 @@ INSERT INTO "BOOKING_SERVICE".public.svc_pvd (svc_id, pvd_id)
 
 -- Schedule for Provider-1
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (1, 1, 1);
+    VALUES (1, 0, 1);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (2, 2, 1);
+    VALUES (2, 1, 1);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (3, 3, 1);
+    VALUES (3, 2, 1);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (4, 4, 1);
+    VALUES (4, 3, 1);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (5, 5, 1);
+    VALUES (5, 4, 1);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (6, 6, 1);
+    VALUES (6, 5, 1);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (7, 7, 1);
+    VALUES (7, 6, 1);
 
 -- Schedule for Provider-2
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (8, 1, 2);
+    VALUES (8, 0, 2);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (9, 2, 2);
+    VALUES (9, 1, 2);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (10, 3, 2);
+    VALUES (10, 2, 2);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (11, 4, 2);
+    VALUES (11, 3, 2);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (12, 5, 2);
+    VALUES (12, 4, 2);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (13, 6, 2);
+    VALUES (13, 5, 2);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (14, 7, 2);
+    VALUES (14, 6, 2);
 
 -- Schedule for Provider-3
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (15, 1, 3);
+    VALUES (15, 0, 3);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (16, 2, 3);
+    VALUES (16, 1, 3);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (17, 3, 3);
+    VALUES (17, 2, 3);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (18, 4, 3);
+    VALUES (18, 3, 3);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (19, 5, 3);
+    VALUES (19, 4, 3);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (20, 6, 3);
+    VALUES (20, 5, 3);
 INSERT INTO "BOOKING_SERVICE".public.sch_for_day (id, day_of_week, provider_id)
-    VALUES (21, 7, 3);
+    VALUES (21, 6, 3);
 
 -- Time Periods for Provider-1
 INSERT INTO "BOOKING_SERVICE".public.per_for_day (id, start_time, end_time, schedule_for_day_id)
@@ -200,4 +200,4 @@ VALUES (42, '14:00:00', '18:00:00', 21);
 
 -- Reservations
 INSERT INTO "BOOKING_SERVICE".public.reservation (id, comment, local_date, local_time, client_id, provider_id, service_id)
-    VALUES (1, 'First reservation for Client-1', '2018-08-02', '09:00:00', 1, 1, 1);
+    VALUES (1, 'First reservation for Client-1', '2018-08-02', '09:00:00', 6, 1, 1);
