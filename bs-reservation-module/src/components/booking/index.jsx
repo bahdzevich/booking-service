@@ -16,11 +16,6 @@ class Booking extends Component {
     this.state = {
       blocks: [
         {
-          name: 'form',
-          flag: false,
-          value: '',
-        },
-        {
           name: 'date',
           flag: false,
           value: '',
@@ -32,6 +27,11 @@ class Booking extends Component {
         },
         {
           name: 'specialist',
+          flag: false,
+          value: '',
+        },
+        {
+          name: 'form',
           flag: false,
           value: '',
         },
